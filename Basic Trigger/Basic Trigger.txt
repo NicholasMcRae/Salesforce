@@ -1,0 +1,78 @@
+	/*
+		I'm writing a rudimentary trigger, method class, and a unit test to prove my knowledge of a few basic concepts in Salesforce. I may
+		write some more code at some point in the future. We can assume that the objects I've created are in different files, but I'm going 
+		to write them all in one file for ease of viewing.
+	*/
+
+trigger Account_BeforeInsert_BeforeUpdate on Account__c (before insert, before update) {
+
+   /*   
+		Right now all this trigger does is process an account rating depending on how many employees the account has
+   */
+   
+	ProcessAccountRating.processAccountRating(trigger.new);
+}
+
+public class ProcessAccountRating
+{
+	/*
+	Purpose: Takes newly inserted and updated accounts and updates their rating based on number of employees
+	Input: Account List
+	Output: Stamped Account List
+	*/
+	
+	public static void processAccountRating(List<Account> acccountList)
+	{
+		for( Account account : accountList)
+		{
+			if(account.num_Employees__c > 500)
+			{
+				account.rating__c = 5;
+			}
+			else-if(account.num_Employees__c < 500 && account.num_Employees__c > 399)
+			{
+				account.rating__c = 4;
+			}
+			else-if(account.num_Employees__c < 400 && account.num_Employees__c > 299)
+			{
+				account.rating__c = 3
+			}
+			else-if(account.num_Employees__c < 300 && account.num_Employees__c > 199)
+			{
+				account.rating__c = 2;
+			}
+			else-if(account.num_Employees__c < 200 && account.num_Employees__c > 99)
+			{
+				account.rating__c = 1
+			}
+			else-if(account.num_Employees__c < 100 && account.num_Employees__c > 0)
+			{
+				account.rating__c = 0
+			}
+		}
+	}
+}
+
+@isTest 
+private class testProcessAccountRating {
+    
+	static testMethod void testProcessAccountRating() {
+       
+	   Account accountOne = returnAccount(343);
+	   Account accountTwo = returnAccount(555);
+	   Account accountTwo = returnACcount(53);
+	   
+	   List<Account> accountList;
+	   accountList.add(accountOne);
+	   accountList.add(accountTwo);
+	   accountList.add(accountThree);
+	   
+	   Test.StartTest();
+		   ProcessAccountRating.processAccountRating(accountList);
+	   Test.StopTest();
+	   
+       System.assertEquals(3, accountOne.rating__c);
+	   System.assertEquals(5, accountTwo.rating__c);
+	   System.assertEquals(0, accountThree.rating__c);
+    }
+}
