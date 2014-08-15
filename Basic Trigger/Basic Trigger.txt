@@ -4,7 +4,7 @@ write some more code at some point in the future. We can assume that the objects
 to write them all in one file for ease of viewing.
 */
 
-trigger Account_BeforeInsert_BeforeUpdate on Account__c (before insert, before update) {
+trigger Account_BeforeInsert_BeforeUpdate on Account (before insert, before update) {
 
    /*   
 	Right now all this trigger does is process an account rating depending on how many employees the account has
