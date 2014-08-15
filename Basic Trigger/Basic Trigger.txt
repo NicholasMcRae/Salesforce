@@ -1,13 +1,13 @@
-	/*
-		I'm writing a rudimentary trigger, method class, and a unit test to prove my knowledge of a few basic concepts in Salesforce. I may
-		write some more code at some point in the future. We can assume that the objects I've created are in different files, but I'm going 
-		to write them all in one file for ease of viewing.
-	*/
+/*
+I'm writing a rudimentary trigger, method class, and a unit test to prove my knowledge of a few basic concepts in Salesforce. I may
+write some more code at some point in the future. We can assume that the objects I've created are in different files, but I'm going 
+to write them all in one file for ease of viewing.
+*/
 
 trigger Account_BeforeInsert_BeforeUpdate on Account__c (before insert, before update) {
 
    /*   
-		Right now all this trigger does is process an account rating depending on how many employees the account has
+	Right now all this trigger does is process an account rating depending on how many employees the account has
    */
    
 	ProcessAccountRating.processAccountRating(trigger.new);
