@@ -1,7 +1,8 @@
 /*
-I'm writing a rudimentary trigger, method class, and a unit test to prove my knowledge of a few basic concepts in Salesforce. I may
-write some more code at some point in the future. We can assume that the objects I've created are in different files, but I'm going 
-to write them all in one file for ease of viewing.
+I'm writing a rudimentary trigger, method class, and a unit test to prove my knowledge of a few
+basic concepts in Salesforce. I may write some more code at some point in the future. We can
+assume that the objects I've created are in different files, but I'm going to write them 
+all in one file for ease of viewing.
 */
 
 trigger Account_BeforeInsert_BeforeUpdate on Account (before insert, before update) {
@@ -10,45 +11,108 @@ trigger Account_BeforeInsert_BeforeUpdate on Account (before insert, before upda
 	Right now all this trigger does is process an account rating depending on how many employees the account has
    */
    
-	ProcessAccountRating.processAccountRating(trigger.new);
+	ProcessAccountRating.processAccountRating(trigger.new, trigger.oldMap, trigger.isUpdate);
 }
 
 public class ProcessAccountRating
 {
+	
+	/*
+	Purpose: Prepare account list on update
+	Input: New and old lists
+	Output: Account list containing accounts that need processing
+	*/	
+	private List<Account> getAccountsForProcessing(List<Account> newAccounts, Map<Id, Account> oldMap)
+	{
+		List <Account> accountsForProcessing = new List <Account>();
+
+		if(newAccounts == null)
+		{
+			return accountsForProcessing;
+		}
+
+
+		for(Account account : newAccounts)
+		{
+			if(account.num_Employees__c != oldMap.get(account.Id).num_Employees__c)
+			{
+				accountsForProcessing.add(account);
+			}
+		}
+		
+		return accountsForProcessing;
+		
+	}
+
+
 	/*
 	Purpose: Takes newly inserted and updated accounts and updates their rating based on number of employees
 	Input: Account List
 	Output: Stamped Account List
 	*/
-	
-	public static void processAccountRating(List<Account> acccountList)
+	public static void processAccountRating(List<Account> newAccounts, Map<Id, Account> oldAccounts, bool isUpdate)
 	{
-		for( Account account : accountList)
+		
+		if(!isUpdate)
+		{	
+		
+			for( Account account : accountList)
+			{
+				if(account.num_Employees__c > 500)
+				{
+					account.rating__c = 5;
+				}
+				else-if(account.num_Employees__c < 500 && account.num_Employees__c > 399)
+				{
+					account.rating__c = 4;
+				}
+				else-if(account.num_Employees__c < 400 && account.num_Employees__c > 299)
+				{
+					account.rating__c = 3
+				}
+				else-if(account.num_Employees__c < 300 && account.num_Employees__c > 199)
+				{
+					account.rating__c = 2;
+				}
+				else-if(account.num_Employees__c < 200 && account.num_Employees__c > 99)
+				{
+					account.rating__c = 1
+				}
+				else-if(account.num_Employees__c < 100 && account.num_Employees__c > 0)
+				{
+					account.rating__c = 0
+				}
+			}
+		}
+		else
 		{
-			if(account.num_Employees__c > 500)
+			for(Account account : getAccountsForProcessing(accountList))
 			{
-				account.rating__c = 5;
-			}
-			else-if(account.num_Employees__c < 500 && account.num_Employees__c > 399)
-			{
-				account.rating__c = 4;
-			}
-			else-if(account.num_Employees__c < 400 && account.num_Employees__c > 299)
-			{
-				account.rating__c = 3
-			}
-			else-if(account.num_Employees__c < 300 && account.num_Employees__c > 199)
-			{
-				account.rating__c = 2;
-			}
-			else-if(account.num_Employees__c < 200 && account.num_Employees__c > 99)
-			{
-				account.rating__c = 1
-			}
-			else-if(account.num_Employees__c < 100 && account.num_Employees__c > 0)
-			{
-				account.rating__c = 0
-			}
+				if(account.num_Employees__c > 500)
+				{
+					account.rating__c = 5;
+				}
+				else-if(account.num_Employees__c < 500 && account.num_Employees__c > 399)
+				{
+					account.rating__c = 4;
+				}
+				else-if(account.num_Employees__c < 400 && account.num_Employees__c > 299)
+				{
+					account.rating__c = 3
+				}
+				else-if(account.num_Employees__c < 300 && account.num_Employees__c > 199)
+				{
+					account.rating__c = 2;
+				}
+				else-if(account.num_Employees__c < 200 && account.num_Employees__c > 99)
+				{
+					account.rating__c = 1
+				}
+				else-if(account.num_Employees__c < 100 && account.num_Employees__c > 0)
+				{
+					account.rating__c = 0
+				}
+			}	
 		}
 	}
 }
