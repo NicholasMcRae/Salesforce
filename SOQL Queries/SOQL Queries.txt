@@ -1,0 +1,29 @@
+/*
+Some examples of SOQL queries
+*/
+
+//Simple SOQL Query
+
+List<Account> accounts =
+SELECT
+		Id, 
+		Name
+FROM
+		Account
+WHERE 
+		Name = 'Sandy'
+		
+//Writing a SOQL query directly in a for loop to be iterated over
+		
+for( Account account : [SELECT Id, Name FROM Account WHERE Name = 'Sandy'])
+{
+	account.Name = 'New Name';
+}
+
+//Doing a check before making a SOQL query to save on governor limits
+
+if(!accountList.isEmpty())
+{
+	List<Account> accounts = [SELECT id, Name FROM accountList WHERE Name = 'Sandy'];
+}
+
