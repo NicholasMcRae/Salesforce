@@ -5,13 +5,13 @@ Some examples of SOQL queries
 //Simple SOQL Query
 
 List<Account> accounts =
-SELECT
+[SELECT
 		Id, 
 		Name
 FROM
 		Account
 WHERE 
-		Name = 'Sandy'
+		Name = 'Sandy'];
 		
 //Writing a SOQL query directly in a for loop to be iterated over
 		
