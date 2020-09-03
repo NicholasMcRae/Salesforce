@@ -1,1 +1,1 @@
-I've had a good amount of experience developing in Salesforce, so I've decided to put some quick Salesforce examples up to prove my knowledge of a few concepts.
+After developing on the Salesforce platorm for about 6 months in 2013 I put up some minor Salesforce examples as proofs of concept.
