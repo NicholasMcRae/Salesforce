@@ -1,0 +1,26 @@
+Develop Without Code
+- metadata-driven development model
+- no code and low code development approaches
+
+The power of metadata
+- three important terms: objects, fields, records
+- salesforce has metadata-aware architecture (salesforce is DB abstraction, not UI)
+- objects are database tables, fields are columns, records are rows
+- true for both standard objects and custom objects that you build yourself
+- metadata forms the structure of your org
+	- metadata holds your configuration
+	- the platform then renders your app's metadata in the user interface along with associated data
+- metadata-driven development model is key difference between dev on platform and outsides of salesforce
+- platform can auto-generate a significant part of your user experience for you
+
+Code with Salesforce Languages
+- three core programmatic technologies to learn about as a Salesforce developer
+	- Lightning Component Framework: Similar to AngularJS or React
+	- Apex: Java-like Syntax
+	- Visualforce
+	
+Extend the Salesforce Platform
+- Salesforce provides a number of APIs
+
+Custom Objects
+- Salesforce supports this
