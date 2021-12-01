@@ -1,0 +1,40 @@
+Lightning Platform API Basics
+*****************************
+
+API First at Salesforce
+- Salesforce takes an API-first approach to building features on the Salesforce Platform
+- API first means building a robust API for a feature before focusing on designing its UI
+- this approach gives the salesforce developer flexibility to manipulate data however you want
+
+Salesforce Data APIs
+- REST API
+	- RESTful principles
+	- Exposes all sorts of Salesforce functionality via REST resources and HTTP methods
+	- CRUD records
+	- Search or Query your data
+	- Retrieeve metadata
+	- Access information about limits in your org
+	- Supports both XML and JSON
+	- Great for writing mobile and web apps
+- SOAP API
+	- Supports XML only
+	- same as REST, just which you need to use
+- Bulk API
+	- for loading and querying lots of data at once
+	- By lots, we mean 50 000 records or more
+- Streaming API
+	- For setting up notifications that trigger when changes are made to your data
+- API Access and Authentication
+	- 
+- API Limits
+	- Salesforce limits the number of API calls per org to ensure the health of the instance
+	- These limits exist to prevent rogue scripts from smashing our servers into driftwoord
+- When to use
+	- Data on each API
+	
+User Interface API
+******************
+- We built a powerful platform that gives you even more access to customize Salesforce. That's Lightning
+- Lightning is the Salesforce user experience platform (Lightning Experience), and UI Framework (Lightning Web Component Framework)
+	- Gives you access to different layers of the Salesforce platform
+-
