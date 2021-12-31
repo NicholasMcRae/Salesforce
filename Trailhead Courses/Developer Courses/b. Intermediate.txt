@@ -37,4 +37,24 @@ User Interface API
 - We built a powerful platform that gives you even more access to customize Salesforce. That's Lightning
 - Lightning is the Salesforce user experience platform (Lightning Experience), and UI Framework (Lightning Web Component Framework)
 	- Gives you access to different layers of the Salesforce platform
--
+
+Features highlighted in intermediate course
+*******************************************
+- Integration Services 
+- Asynchronous Apex
+- Platform Events Basics
+	- deliver custom notifications within Salesforce and external apps
+- Aura Components Basics
+	- Aura components to build modern web apps with reusable UI components
+- Application Lifecycle and Development Models
+	- Application lifecycle and development models on the lightning platform
+		- what application lifecycle management is
+		- basics of release management
+		- manage changes in increasingly complex releases
+		- package development for more flexible releases
+- Declarative change sets
+- Org Development Model
+- Platform Cache Basics
+- Event Monitoring
+- Big Object Basics
+	
